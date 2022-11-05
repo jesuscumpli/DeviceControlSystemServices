@@ -50,6 +50,7 @@ if __name__ == "__main__":
         try:
             logging.info("Generating new sample data...")
             data_to_send = generate_random_data_by_type_device(config_data["type_device"])
+            data_to_send = json.dumps(data_to_send)
             logging.info("DATA TO SEND: " + str(data_to_send))
             send_data(data_to_send)
 
