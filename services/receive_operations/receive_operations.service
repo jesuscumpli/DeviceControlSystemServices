@@ -1,0 +1,12 @@
+[Unit]
+Description=Receive Operations Service
+After=network.target receive_operations.socket
+Requires=receive_operations.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/controlSystem/services/receive_operations/receive_operations.py
+TimeoutStopSec=5
+
+[Install]
+WantedBy=default.target
