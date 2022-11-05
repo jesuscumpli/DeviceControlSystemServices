@@ -39,7 +39,7 @@ def generate_random_temperature_data():
         random_data = random.uniform(mean_temperature, max_temperature)
     else:
         random_data = random.uniform(mean_temperature, (mean_temperature + max_temperature) / 2.0)
-    message = {"temperature": random_data, "scale": scale_temperature, "date": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}
+    message = {"temperature": round(random_data, 2), "scale": scale_temperature, "date": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}
     return message
 
 def generate_random_humidity_data():
@@ -57,7 +57,7 @@ def generate_random_humidity_data():
         random_data = random.uniform(min_humidity, (min_humidity + mean_humidity) / 2.0)
     else:
         random_data = random.uniform((min_humidity + mean_humidity) / 2.0, mean_humidity)
-    message = {"humidity": random_data, "scale": scale_humidity,
+    message = {"humidity": round(random_data, 2), "scale": scale_humidity,
                "date": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}
     return message
 
@@ -76,6 +76,6 @@ def generate_random_smart_meter_data():
         random_data = random.uniform(mean_smart_meter, max_smart_meter)
     else:
         random_data = random.uniform(mean_smart_meter, (mean_smart_meter + max_smart_meter) / 2.0)
-    message = {"smart_meter": random_data, "scale": scale_smart_meter,
+    message = {"smart_meter": round(random_data, 2), "scale": scale_smart_meter,
                "date": datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")}
     return message
