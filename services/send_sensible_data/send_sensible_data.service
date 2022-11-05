@@ -1,0 +1,12 @@
+[Unit]
+Description=Send Sensible Data Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/device/services/send_sensible_data/send_sensible_data.py
+RuntimeMaxSec=3600s
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

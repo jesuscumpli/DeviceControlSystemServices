@@ -1,0 +1,9 @@
+{
+  "IP": "192.168.1.5",
+  "type_device": "temperature",
+  "scale_temperature": "Celsius",
+  "min_temperature": -3,
+  "mean_temperature": 15,
+  "max_temperature": 30,
+  "sensible_data": true
+}
