@@ -15,5 +15,5 @@ sudo systemctl enable send_sensible_data.service
 sudo systemctl enable receive_operations.socket
 sudo systemctl enable receive_operations.service
 sudo systemctl start send_sensible_data.service
-sudo systemctl start send_sensible_data.socket
-sudo systemctl start send_sensible_data.service
+sudo systemctl start receive_operations.socket
+sudo systemctl start receive_operations.service
