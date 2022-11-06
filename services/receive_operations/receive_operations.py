@@ -58,8 +58,8 @@ class Handler(StreamRequestHandler):
 
     def decrypt_data(self):
         public_key_objective = load_public_key("/opt/device/encryption/PUBLIC_KEY_CONTROL_SYSTEM")
-        private_key = load_private_key("/opt/controlSystem/encryption/PRIVATE_KEY")
-        public_key = load_public_key("/opt/controlSystem/encryption/PUBLIC_KEY")
+        private_key = load_private_key("/opt/device/encryption/PRIVATE_KEY")
+        public_key = load_public_key("/opt/device/encryption/PUBLIC_KEY")
 
         decryptor = Encryption(private_key, public_key)
         decrypted_msg = decryptor.decrypt(self.message["data"].encode("ISO-8859-1"), public_key_objective)
