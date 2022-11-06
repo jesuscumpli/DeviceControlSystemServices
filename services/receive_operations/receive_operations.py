@@ -7,6 +7,9 @@ sys.path.append("/opt/controlSystem")
 
 logging.basicConfig(level=logging.INFO)
 import json
+from encryption.functions import *
+from encryption.encryption import *
+from encryption.config import *
 
 HOST, PORT = "localhost", 8888
 
@@ -18,6 +21,11 @@ class Handler(StreamRequestHandler):
             self.get_config_data()
             self.decode_message_info()
             self.verify_IP_control_system()
+            self.verify_data()
+            if self.config_data["encrypt_operation"]:
+                self.decrypt_data()
+            logging.info("MENSAJE DESENCRIPTADO: %s" % (self.data))
+            self.normalize_data()
             self.change_configuration_by_operation()
             logging.info("Operacion REALIZADA: " + str(self.data))
 
@@ -40,6 +48,22 @@ class Handler(StreamRequestHandler):
         if str(IP_received) != str(IP_control_system):
             raise Exception("IP RECEIVED IS NOT CONTROL SYSTEM: " + str(IP_received))
 
+    def verify_data(self):
+        signature = self.message["signature"].encode("ISO-8859-1")
+        public_key_objective = load_public_key("/opt/device/encryption/PUBLIC_KEY_CONTROL_SYSTEM")
+        data = self.message["data"].encode("ISO-8859-1")
+        verify_signature(signature, data, public_key_objective)
+
+    def decrypt_data(self):
+        public_key_objective = load_public_key("/opt/device/encryption/PUBLIC_KEY_CONTROL_SYSTEM")
+        private_key = load_private_key("/opt/controlSystem/encryption/PRIVATE_KEY")
+        public_key = load_public_key("/opt/controlSystem/encryption/PUBLIC_KEY")
+
+        decryptor = Encryption(private_key, public_key)
+        decrypted_msg = decryptor.decrypt(self.message["data"].encode("ISO-8859-1"), public_key_objective)
+        self.data = decrypted_msg
+        logging.info("DECRYPTED MESSAGE: " + str(decrypted_msg))
+
     def normalize_data(self):
         data = self.message["data"]
         try:
@@ -49,12 +73,11 @@ class Handler(StreamRequestHandler):
         self.operation = data
 
     def change_configuration_by_operation(self):
-        key_config = self.operation["key_config"]
-        value_config = self.operation["value_config"]
-        config_data = self.config_data
-        config_data[key_config] = value_config
-        with open("/opt/device/config/config.json", 'w') as config_file:
-            json.dump(config_data, config_file)
+        for key_config, value_config in self.operation.items():
+            config_data = self.config_data
+            config_data[key_config] = value_config
+            with open("/opt/device/config/config.json", 'w') as config_file:
+                json.dump(config_data, config_file)
 
 class Server(TCPServer):
     SYSTEMD_FIRST_SOCKET_FD = 3
