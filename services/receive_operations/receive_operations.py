@@ -67,7 +67,7 @@ class Handler(StreamRequestHandler):
         logging.info("DECRYPTED MESSAGE: " + str(decrypted_msg))
 
     def normalize_data(self):
-        data = self.message["data"]
+        data = self.data
         try:
             data = json.loads(data)
         except Exception as e:
