@@ -1,5 +1,8 @@
 {
-  "ip_device": "192.168.1.5",
+  "IP_heartbeat": "192.168.1.5",
+  "IP_data": "192.168.1.5",
+  "IP_operation": "192.168.1.5",
+  "port_operation": 8888,
   "type_device": "temperature",
   "scale_temperature": "Celsius",
   "min_temperature": -3,
