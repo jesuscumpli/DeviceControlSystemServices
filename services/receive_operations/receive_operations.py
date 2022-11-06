@@ -34,7 +34,9 @@ class Handler(StreamRequestHandler):
         except Exception as e:
             logging.exception(str(e))
         # SEND ACK
-        self.send_ACK()
+        data = self.ACK
+        data = data.encode()
+        self.wfile.write(data)
 
     def get_config_data(self):
         with open("/opt/device/config/config.json") as f:
@@ -83,10 +85,6 @@ class Handler(StreamRequestHandler):
             with open("/opt/device/config/config.json", 'w') as config_file:
                 json.dump(config_data, config_file)
 
-    def send_ACK(self):
-        data = self.ACK
-        data = data.encode("ISO-8859-1")
-        self.wfile.write(data)
 
 
 class Server(TCPServer):
