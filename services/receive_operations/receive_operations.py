@@ -28,6 +28,8 @@ class Handler(StreamRequestHandler):
             self.normalize_data()
             self.change_configuration_by_operation()
             logging.info("Operacion REALIZADA: " + str(self.data))
+            # SEND ACK
+
 
         except Exception as e:
             logging.exception(str(e))
