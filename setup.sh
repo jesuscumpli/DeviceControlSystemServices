@@ -1,4 +1,4 @@
-sudo cp . /opt/device
+sudo cp -r . /opt/device
 sudo cd /opt/device
 
 sudo setfacl -R -m u:control:rwx myfolder # Change username control for the specific User of the machine
