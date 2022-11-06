@@ -15,6 +15,7 @@ HOST, PORT = "localhost", 8888
 
 class Handler(StreamRequestHandler):
     def handle(self):
+        self.ACK = "ERROR"
         try:
             self.data = self.rfile.readline().strip()
             logging.info("DATOS RECIBIDOS DE <%s>: %s" % (self.client_address, self.data))
@@ -28,11 +29,12 @@ class Handler(StreamRequestHandler):
             self.normalize_data()
             self.change_configuration_by_operation()
             logging.info("Operacion REALIZADA: " + str(self.data))
-            # SEND ACK
-
+            self.ACK = "OK"
 
         except Exception as e:
             logging.exception(str(e))
+        # SEND ACK
+        self.send_ACK()
 
     def get_config_data(self):
         with open("/opt/device/config/config.json") as f:
@@ -80,6 +82,12 @@ class Handler(StreamRequestHandler):
             config_data[key_config] = value_config
             with open("/opt/device/config/config.json", 'w') as config_file:
                 json.dump(config_data, config_file)
+
+    def send_ACK(self):
+        data = self.ACK
+        data = data.encode("ISO-8859-1")
+        self.wfile.write(data)
+
 
 class Server(TCPServer):
     SYSTEMD_FIRST_SOCKET_FD = 3
