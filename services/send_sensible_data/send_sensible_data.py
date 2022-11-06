@@ -49,9 +49,7 @@ def encrypt_message(message_decrypted):
 
 
 if __name__ == "__main__":
-    global config_data
     logging.info("Initializing send sensible data service...")
-
     while True:
         try:
             logging.info("Generating new sample data...")
