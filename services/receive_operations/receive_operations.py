@@ -3,7 +3,7 @@ import socket
 import logging
 
 import sys
-sys.path.append("/opt/controlSystem")
+sys.path.append("/opt/device")
 
 logging.basicConfig(level=logging.INFO)
 import json
