@@ -21,6 +21,7 @@ MAX_SLEEP = 60 * 3
 f = open("/opt/device/config/config.json")
 config_data = json.load(f)
 
+
 def send_data(message):
     sensible_data = config_data["sensible_data"]
     ip_to_send = config_data["ip_control_system"]
@@ -33,6 +34,7 @@ def send_data(message):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((ip_to_send, port_to_send))
         s.sendall(message)
+
 
 def encrypt_message(message_decrypted):
     private_key = load_private_key("/opt/device/encryption/PRIVATE_KEY")
@@ -60,4 +62,3 @@ if __name__ == "__main__":
         random_sleep = random.randint(MIN_SLEEP, MAX_SLEEP)
         logging.info("Sleeping" + str(random_sleep) + " seconds...")
         time.sleep(random_sleep)
-
