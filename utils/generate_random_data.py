@@ -11,9 +11,6 @@ import random
 import os
 import time
 
-f = open("/opt/device/config/config.json")
-config_data = json.load(f)
-
 def generate_random_data_by_type_device(type_device):
     random_data = ""
     if type_device == "temperature":
@@ -25,6 +22,8 @@ def generate_random_data_by_type_device(type_device):
     return random_data
 
 def generate_random_temperature_data():
+    with open("/opt/device/config/config.json") as f:
+        config_data = json.load(f)
     hour = datetime.datetime.now().hour
     random_data = 0
     min_temperature = config_data["min_temperature"]
@@ -43,6 +42,8 @@ def generate_random_temperature_data():
     return message
 
 def generate_random_humidity_data():
+    with open("/opt/device/config/config.json") as f:
+        config_data = json.load(f)
     hour = datetime.datetime.now().hour
     random_data = 0
     min_humidity = config_data["min_humidity"]
@@ -62,6 +63,8 @@ def generate_random_humidity_data():
     return message
 
 def generate_random_smart_meter_data():
+    with open("/opt/device/config/config.json") as f:
+        config_data = json.load(f)
     hour = datetime.datetime.now().hour
     random_data = 0
     min_smart_meter = config_data["min_smart_meter"]
