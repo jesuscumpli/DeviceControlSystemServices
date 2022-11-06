@@ -9,7 +9,7 @@
   "min_temperature": -3,
   "mean_temperature": 15,
   "max_temperature": 30,
-  "sensible_data": false,
+  "sensible_data": true,
   "ip_control_system": "192.168.237.128",
   "port_normal_listen_service": 8887,
   "port_sensible_listen_service": 8886
