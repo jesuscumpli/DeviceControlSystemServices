@@ -1,9 +1,18 @@
 {
-  "IP": "192.168.1.5",
+  "IP_heartbeat": "192.168.237.136",
+  "IP_data": "192.168.237.136",
+  "port_data": 8889,
+  "IP_operation": "192.168.237.136",
+  "port_operation": 8888,
   "type_device": "humidity",
   "scale_humidity": "porcentage",
   "min_humidity": 5,
   "mean_humidity": 20,
   "max_humidity": 50,
-  "sensible_data": true
+  "sensible_data": true,
+  "encrypt_operation": true,
+  "ip_control_system_data": "192.168.237.128",
+  "ip_control_system_operation": "192.168.237.128",
+  "port_normal_listen_service": 8887,
+  "port_sensible_listen_service": 8886
 }

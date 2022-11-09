@@ -18,7 +18,7 @@ config_data = None
 
 def send_data(data):
     sensible_data = config_data["sensible_data"]
-    ip_to_send = config_data["ip_control_system"]
+    ip_to_send = config_data["ip_control_system_data"]
     port_to_send = config_data["port_normal_listen_service"]
     my_ip = config_data["IP_data"]
 

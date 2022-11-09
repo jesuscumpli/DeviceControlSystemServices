@@ -50,7 +50,7 @@ class Handler(StreamRequestHandler):
 
     def verify_IP_control_system(self):
         IP_received = self.message["ip_control_system"]
-        IP_control_system = self.config_data["ip_control_system"]
+        IP_control_system = self.config_data["ip_control_system_operation"]
         if str(IP_received) != str(IP_control_system):
             raise Exception("IP RECEIVED IS NOT CONTROL SYSTEM: " + str(IP_received))
 

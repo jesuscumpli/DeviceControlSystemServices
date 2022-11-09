@@ -1,9 +1,18 @@
 {
-  "IP": "192.168.1.5",
+  "IP_heartbeat": "192.168.237.136",
+  "IP_data": "192.168.237.136",
+  "port_data": 8889,
+  "IP_operation": "192.168.237.136",
+  "port_operation": 8888,
   "type_device": "smart_meter",
   "scale_smart_meter": "kW",
   "min_smart_meter": 0,
   "mean_smart_meter": 1.3,
   "max_smart_meter": 5,
-  "sensible_data": true
+  "sensible_data": true,
+  "encrypt_operation": true,
+  "ip_control_system_data": "192.168.237.128",
+  "ip_control_system_operation": "192.168.237.128",
+  "port_normal_listen_service": 8887,
+  "port_sensible_listen_service": 8886
 }

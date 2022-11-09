@@ -11,7 +11,8 @@
   "max_temperature": 30,
   "sensible_data": true,
   "encrypt_operation": true,
-  "ip_control_system": "192.168.237.128",
+  "ip_control_system_data": "192.168.237.128",
+  "ip_control_system_operation": "192.168.237.128",
   "port_normal_listen_service": 8887,
   "port_sensible_listen_service": 8886
 }
