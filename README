@@ -3,6 +3,10 @@ refresh code updates with:
 cd /opt/device
 git pull
 
+# RESTART SERVICES AFTER UPDATES
+sudo systemctl restart send_sensible_data.service
+sudo systemctl restart receive_operations.service
+
 # HOW TO GENERATE A NEW PAIR OF PUBLIC AND PRIVATE KEYS
 cd /opt/device/encryption folder
 python3 main_generate_keys.py (it generates the key in the encryption folder with the names: PRIVATE KEY and PUBLIC KEY)
@@ -28,3 +32,9 @@ Change the values:
   "port_normal_listen_service": 8887,   # Port to send de data tothe ControlSystem where is listening normal data
   "port_sensible_listen_service": 8886  # Port to send de data tothe ControlSystem where is listening sensible data (encrypted)
 }
+
+# HOW TO CHECK IF SEND_SENSIBLE_DATA IS WORKING
+See logs: sudo journalctl -xfu send_sensible_data.service
+
+# HOW TO CHECK IF RECEIVED THE OPERATION SENDED FROM WEB PAGE
+See logs: sudo journalctl -xfu receive_operations.service
