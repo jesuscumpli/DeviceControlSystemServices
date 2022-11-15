@@ -1,0 +1,30 @@
+# UPDATES CODE - GIT PULL
+refresh code updates with:
+cd /opt/device
+git pull
+
+# HOW TO GENERATE A NEW PAIR OF PUBLIC AND PRIVATE KEYS
+cd /opt/device/encryption folder
+python3 main_generate_keys.py (it generates the key in the encryption folder with the names: PRIVATE KEY and PUBLIC KEY)
+
+# HOW TO CONFIGURATE THE DEVICE
+sudo nano /opt/device/config/config.json
+Change the values:
+{
+  "IP_heartbeat": "192.168.237.136", # IP from ControlSystem to Device to send pings
+  "IP_data": "192.168.237.136",      # IP from Device to ControlSystem to send data
+  "port_data": 8889,                 # not used - ignore
+  "IP_operation": "192.168.237.136", # IP from ControlSystem to Device to send operations
+  "port_operation": 8888,            # Port Device to receive the operations
+  "type_device": "temperature",      # Type of the device: temperature/humidity/smart_meter
+  "scale_temperature": "Celsius",    # Scale temperature (it can changes with the operations)
+  "min_temperature": -3,
+  "mean_temperature": 15,
+  "max_temperature": 30,
+  "sensible_data": true,
+  "encrypt_operation": true,        # Encrypt or not the operations
+  "ip_control_system_data": "192.168.237.128",
+  "ip_control_system_operation": "192.168.237.128",
+  "port_normal_listen_service": 8887,   # Port to send de data tothe ControlSystem where is listening normal data
+  "port_sensible_listen_service": 8886  # Port to send de data tothe ControlSystem where is listening sensible data (encrypted)
+}
